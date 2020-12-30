@@ -27,11 +27,11 @@ class Game:
 		self.level2_layout = [
 			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			[1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+			[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
 			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+			[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
 			[1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
 			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 		]
@@ -44,10 +44,11 @@ class Game:
 		self.player2_image = pygame.image.load("./assets/player2.png")
 		self.golden_snitch_image = pygame.image.load("./assets/golden_snitch.png")
 		self.wall_image = pygame.image.load("./assets/wall.png")
+		self.floor_image = self.createBlankImage(self.tile_size)
 
 		self.sprites = pygame.sprite.Group()
 
-		self.pitch = Pitch(self.wall_image, 0, 0, self.tile_size, self.level1_layout)
+		self.pitch = Pitch(self.floor_image, self.wall_image, 0, 0, self.tile_size, self.level1_layout)
 		self.player1 = Player(self.sprites, self.player1_image, 1, 2, self.tile_size)
 		self.player2 = Player(self.sprites, self.player2_image, 6, 5, self.tile_size)
 		self.golden_snitch = GoldenSnitch(self.sprites, self.golden_snitch_image, 4, 3, self.tile_size)
@@ -58,6 +59,9 @@ class Game:
 			self.eventHandler()				# Check for events
 			self.draw()								# Draw to screen
 
+	def createBlankImage(self, tile_size):
+		return pygame.Surface((tile_size, tile_size), pygame.SRCALPHA, 32).convert_alpha()
+	
 	def eventHandler(self):
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:

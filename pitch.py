@@ -1,11 +1,10 @@
 import pygame
 
 class Pitch:
-	def __init__(self, wall_image, x, y, tile_size, tiles):
+	def __init__(self, floor_image, wall_image, x, y, tile_size, tiles):
 		self.x = x
 		self.y = y
-		blank_image = pygame.Surface((tile_size, tile_size), pygame.SRCALPHA, 32).convert_alpha()
-		self.tile_images = [blank_image, wall_image]
+		self.tile_images = [floor_image, wall_image]
 		self.tile_size = tile_size
 		self.tiles = tiles
 		self.render()
