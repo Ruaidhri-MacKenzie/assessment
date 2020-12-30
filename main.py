@@ -1,3 +1,10 @@
+"""
+Quidditch game prototype v1.0
+By Ruaidhri MacKenzie 2020
+For Weasleys’ Wizard Wheezes
+OOP All Outcomes Assessment
+"""
+
 import sys
 import pygame
 from pitch import Pitch
@@ -8,11 +15,12 @@ from golden_snitch import GoldenSnitch
 class Game:
 	def __init__(self):
 		self.title = "Quidditch"
-		self.width = 800
-		self.height = 600
+		self.width = 400
+		self.height = 400
 		self.tile_size = 32
 		self.fps = 60
 		self.background = (0, 0, 0)
+		self.text_colour = (255, 255, 255)
 
 		self.level = 1
 		self.level1_layout = [
@@ -35,11 +43,15 @@ class Game:
 			[1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
 			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 		]
+		self.player1_score = 10
+		self.player2_score = 10
 
 		pygame.init()
 		pygame.display.set_caption(self.title)
 		self.screen = pygame.display.set_mode((self.width, self.height))
 
+		self.font = pygame.font.SysFont("Arial", 30)
+		
 		self.player1_image = pygame.image.load("./assets/player1.png")
 		self.player2_image = pygame.image.load("./assets/player2.png")
 		self.golden_snitch_image = pygame.image.load("./assets/golden_snitch.png")
@@ -90,6 +102,12 @@ class Game:
 		self.screen.fill(self.background)
 		self.pitch.draw(self.screen)
 		self.sprites.draw(self.screen)
+
+		self.player1_score_text = self.font.render(f"Player 1: {self.player1_score - self.player1.move_counter}", True, self.text_colour)
+		self.player2_score_text = self.font.render(f"Player 2: {self.player2_score - self.player2.move_counter}", True, self.text_colour)
+		self.screen.blit(self.player1_score_text, (20, 300))
+		self.screen.blit(self.player2_score_text, (20, 350))
+
 		pygame.display.flip()
 
 	def quit(self):
@@ -131,6 +149,10 @@ class Game:
 
 	def checkForSnitch(self, player):
 		if self.isSnitch(player.x, player.y):
+			if self.player1 == player:
+				self.player1_score += 150
+			else:
+				self.player2_score += 150
 			self.loadNextLevel()
 		else:
 			if self.level > 1:
