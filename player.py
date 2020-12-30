@@ -41,3 +41,11 @@ class Player:
 	def turnRight(self):
 		self.sprite.image = self.image_right
 	
+	def getX(self):
+		return self.x
+	
+	def getY(self):
+		return self.y
+	
+	def getMoveCounter(self):
+		return self.move_counter

@@ -25,3 +25,10 @@ class Ball:
 	
 	def moveDown(self):
 		self.setPosition(self.x, self.y + 1)
+
+	def getX(self):
+		return self.x
+	
+	def getY(self):
+		return self.y
+	

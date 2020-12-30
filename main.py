@@ -103,8 +103,8 @@ class Game:
 		self.pitch.draw(self.screen)
 		self.sprites.draw(self.screen)
 
-		self.player1_score_text = self.font.render(f"Player 1: {self.player1_score - self.player1.move_counter}", True, self.text_colour)
-		self.player2_score_text = self.font.render(f"Player 2: {self.player2_score - self.player2.move_counter}", True, self.text_colour)
+		self.player1_score_text = self.font.render(f"Player 1: {self.player1_score - self.player1.getMoveCounter()}", True, self.text_colour)
+		self.player2_score_text = self.font.render(f"Player 2: {self.player2_score - self.player2.getMoveCounter()}", True, self.text_colour)
 		self.screen.blit(self.player1_score_text, (20, 300))
 		self.screen.blit(self.player2_score_text, (20, 350))
 
@@ -115,30 +115,30 @@ class Game:
 		sys.exit()
 
 	def isSnitch(self, x, y):
-		return self.golden_snitch.x == x and self.golden_snitch.y == y
+		return self.golden_snitch.getX() == x and self.golden_snitch.getY() == y
 
 	def isPlayer(self, x, y):
-		return (self.player1.x == x and self.player1.y == y) or (self.player2.x == x and self.player2.y == y)
+		return (self.player1.getX() == x and self.player1.getY() == y) or (self.player2.getX() == x and self.player2.getY() == y)
 
 	def movePlayerLeft(self, player):
 		player.turnLeft()
-		if self.pitch.isFloor(player.x - 1, player.y):
+		if self.pitch.isFloor(player.getX() - 1, player.getY()):
 			player.moveLeft()
 			self.checkForSnitch(player)
 
 	def movePlayerRight(self, player):
 		player.turnRight()
-		if self.pitch.isFloor(player.x + 1, player.y):
+		if self.pitch.isFloor(player.getX() + 1, player.getY()):
 			player.moveRight()
 			self.checkForSnitch(player)
 
 	def movePlayerUp(self, player):
-		if self.pitch.isFloor(player.x, player.y - 1):
+		if self.pitch.isFloor(player.getX(), player.getY() - 1):
 			player.moveUp()
 			self.checkForSnitch(player)
 
 	def movePlayerDown(self, player):
-		if self.pitch.isFloor(player.x, player.y + 1):
+		if self.pitch.isFloor(player.getX(), player.getY() + 1):
 			player.moveDown()
 			self.checkForSnitch(player)
 	
@@ -148,7 +148,7 @@ class Game:
 			self.golden_snitch.setPosition(x, y)
 
 	def checkForSnitch(self, player):
-		if self.isSnitch(player.x, player.y):
+		if self.isSnitch(player.getX(), player.getY()):
 			if self.player1 == player:
 				self.player1_score += 150
 			else:
