@@ -11,7 +11,6 @@ class Pitch:
 		self.tile_images = [floor_image, wall_image]
 		self.tile_size = tile_size
 		self.tiles = tiles
-		self.render()
 
 	def getWidth(self):
 		"""Return the number of tiles that the pitch is wide."""

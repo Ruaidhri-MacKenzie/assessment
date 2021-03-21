@@ -65,7 +65,10 @@ class Game:
 		self.screen = pygame.display.set_mode((self.width, self.height))
 
 		# Define standard font
-		self.font = pygame.font.SysFont("Arial", 30)
+		try:
+			self.font = pygame.font.SysFont("Verdana", 30)
+		except:
+			self.font = pygame.font.SysFont(None, 30)
 		
 		# Load images
 		self.player1_image = pygame.image.load("./assets/player1.png")
@@ -79,6 +82,7 @@ class Game:
 
 		# Create game objects - A pitch, 2 players and a golden snitch
 		self.pitch = Pitch(self.floor_image, self.wall_image, 0, 0, self.tile_size, self.level1_layout)
+		self.pitch.render()
 		self.player1 = Player(self.sprites, self.player1_image, 1, 2, self.tile_size)
 		self.player2 = Player(self.sprites, self.player2_image, 6, 5, self.tile_size)
 		self.golden_snitch = GoldenSnitch(self.sprites, self.golden_snitch_image, 4, 3, self.tile_size)
