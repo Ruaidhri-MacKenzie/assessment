@@ -9,49 +9,51 @@ tile_size = 32
 
 player = Player(sprite_group, player1_image, x, y, tile_size)
 
+print("==Player Unit Test==")
+
 test1 = "Pass" if player.x == x else "Fail"
-print(f"1. player.x initialises correctly: {test1}")
+print(f"1. player.x initialises correctly: {test1:>5}")
 
 test2 = "Pass" if player.y == y else "Fail"
-print(f"2. player.y initialises correctly: {test2}")
+print(f"2. player.y initialises correctly: {test2:>5}")
 
 player.moveLeft()
 
 test3 = "Pass" if player.x == x - 1 else "Fail"
-print(f"3. player.moveLeft(): {test3}")
+print(f"3. player.moveLeft(): {test3:>18}")
 
 player.moveRight()
 
 test4 = "Pass" if player.x == x else "Fail"
-print(f"4. player.moveRight(): {test4}")
+print(f"4. player.moveRight(): {test4:>17}")
 
 player.moveUp()
 
 test5 = "Pass" if player.y == y - 1 else "Fail"
-print(f"5. player.moveUp(): {test5}")
+print(f"5. player.moveUp(): {test5:>20}")
 
 player.moveDown()
 
 test6 = "Pass" if player.y == y else "Fail"
-print(f"6. player.moveDown(): {test6}")
+print(f"6. player.moveDown(): {test6:>18}")
 
 player.turnLeft()
 
 test7 = "Pass" if player.sprite.image == player.image_left else "Fail"
-print(f"7. player.turnLeft(): {test7}")
+print(f"7. player.turnLeft(): {test7:>18}")
 
 player.turnRight()
 
 test8 = "Pass" if player.sprite.image == player.image_right else "Fail"
-print(f"8. player.turnRight(): {test8}")
+print(f"8. player.turnRight(): {test8:>17}")
 
 player.setPosition(3, 4)
 
 test9 = "Pass" if player.getX() == 3 else "Fail"
-print(f"9. player.getX(): {test9}")
+print(f"9. player.getX(): {test9:>22}")
 
 test10 = "Pass" if player.getY() == 4 else "Fail"
-print(f"10. player.getY(): {test10}")
+print(f"10. player.getY(): {test10:>21}")
 
 test11 = "Pass" if player.getMoveCounter() == 4 else "Fail"
-print(f"11. player.getMoveCounter(): {test11}")
+print(f"11. player.getMoveCounter(): {test11:>11}")
